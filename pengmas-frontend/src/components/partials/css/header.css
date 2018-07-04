@@ -1,0 +1,11 @@
+/* Component Styling */
+
+#header {
+    background-color: #4b9dd3;
+    color: white;
+    margin-top: -20px;
+}
+
+#header-logo {
+    display: flex;
+}
