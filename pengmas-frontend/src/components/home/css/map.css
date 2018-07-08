@@ -3,8 +3,10 @@
 }
 
 #map-panel {
-    width: 100%;
-    padding: 20px;
+    padding: 30px;
+    right: 0;
+    position: fixed;
+    z-index: 1;
 }
 
 #map-panel__title {
@@ -19,11 +21,6 @@
 #map {
     height: 650px;
     width: 100%;
-}
-
-#map-panel {
-    position: absolute;
-    z-index: 1;
 }
 
 @media only screen and (max-width: 768px) {

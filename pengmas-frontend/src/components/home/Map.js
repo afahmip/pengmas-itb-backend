@@ -4,6 +4,13 @@ import React, { Component } from 'react';
 import './css/map.css';
 
 class Map extends Component {
+    constructor(props) {
+        super(props);
+
+        this.addMarker = this.addMarker.bind(this);
+        this.initMap = this.initMap.bind(this);
+    }
+
     componentDidMount() {
         this.initMap();
     }
@@ -333,6 +340,59 @@ class Map extends Component {
                 }
             ]
         });
+
+        // This event listener calls addMarker() when the map is clicked.
+        google.maps.event.addListener(map, 'click', event => {
+            this.addMarker(event.latLng, map);
+        });
+    }
+
+    // Adds a marker to the map.
+    addMarker = (location, map) => {
+        var marker = new google.maps.Marker({
+            position: location,
+            label: {
+                text: '1',//labelIndex.toString(),
+                color: 'white'
+            },
+            icon: {
+                url: "http://maps.google.com/mapfiles/ms/micons/red-dot.png", // url
+                scaledSize: new google.maps.Size(50, 50), // scaled size
+            },
+            map: map
+        });
+
+        // var position = splitLocation(location);
+        // var mark = [position["lat"], position["lng"]];
+
+        // var li = document.createElement('li');
+        // li.innerHTML = location;
+        // $('#list-point').append(li);
+
+        // marker.addListener('click', function(e) {
+        //     var icon = {
+        //         url: "http://maps.google.com/mapfiles/ms/micons/green-dot.png", // url
+        //         scaledSize: new google.maps.Size(50, 50), // scaled size
+        //     };
+        //     marker.setIcon(icon);
+        //     prevMarker = nowMarker;
+        //     nowMarker = marker;
+        //     addPolyline(prevMarker, nowMarker);
+        //     if(prevMarker !== nowMarker) {
+        //         var icon = {
+        //             url: "http://maps.google.com/mapfiles/ms/micons/red-dot.png", // url
+        //             scaledSize: new google.maps.Size(50, 50), // scaled size
+        //         };
+        //         prevMarker.setIcon(icon);
+        //         nowMarker.setIcon(icon);
+        //         prevMarker = null;
+        //         nowMarker = null;
+        //     }
+        // });
+
+        // markers.push(marker);
+        // markList.push(mark);
+        // labelIndex++;
     }
 
     render() {

@@ -3,6 +3,20 @@ import { Nav, Navbar, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import './css/navigation.css';
 
 class Navigation extends Component {
+    constructor(props, context) {
+        super(props, context);
+        
+        this.handleSelect = this.handleSelect.bind(this);
+        
+        this.state = {
+            activeKey: this.props.activeKey
+        };
+    }
+      
+    handleSelect(key) {
+        this.setState({key});
+    }
+
     render() {
         return (
             <Navbar collapseOnSelect>
@@ -10,7 +24,10 @@ class Navigation extends Component {
                     <Navbar.Toggle />
                 </Navbar.Header>
                 <Navbar.Collapse>
-                    <Nav>
+                    <Nav 
+                        onSelect={this.handleSelect} 
+                        activeKey={this.state.activeKey}
+                    >
                         <NavItem eventKey={1} href="#">
                             Beranda
                         </NavItem>
