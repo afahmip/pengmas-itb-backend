@@ -36,12 +36,14 @@ class Activity(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     lat = db.Column(db.Float, nullable=False)
     lng = db.Column(db.Float, nullable=False)
+    name = db.Column(db.String(300), nullable=True)
     lembaga_id = db.Column(db.Integer, db.ForeignKey('lembagas.id', ondelete='CASCADE'), nullable=False)
     lembaga = db.relationship('Lembaga', backref=db.backref('activities', lazy='dynamic'))
 
-    def __init__(self, lat, lng, lembaga_id):
+    def __init__(self, lat, lng, name, lembaga_id):
         self.lat = lat
         self.lng = lng
+        self.name = name
         self.lembaga_id = lembaga_id
 
 
@@ -54,6 +56,13 @@ class Lembaga(db.Model):
     def __init__(self, name, category):
         self.name = name
         self.category = category
+    
+    def json(self):
+        return {'name': self.name, 'category': self.category}
+    
+    @classmethod
+    def find_by_id(cls, id):
+        return cls.query.filter_by(id=id).first()
 
 
 # Model Schema
@@ -80,4 +89,5 @@ class ActivitySchema(ma.Schema):
     id = fields.Integer()
     lat = fields.Float(required=True)
     lng = fields.Float(required=True)
+    name = fields.String(required=True) #, validate=validate.Length(1)
     lembaga_id = fields.Integer(required=True)

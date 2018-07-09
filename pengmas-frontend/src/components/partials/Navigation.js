@@ -28,28 +28,28 @@ class Navigation extends Component {
                         onSelect={this.handleSelect} 
                         activeKey={this.state.activeKey}
                     >
-                        <NavItem eventKey={1} href="#">
+                        <NavItem eventKey={1} href="/">
                             Beranda
                         </NavItem>
                         <NavItem eventKey={2} href="#">
                             Berita
                         </NavItem>
                         <NavDropdown eventKey={3} title="Profil" id="basic-nav-dropdown">
-                            <MenuItem eventKey={3.1}>Action</MenuItem>
-                            <MenuItem eventKey={3.2}>Another action</MenuItem>
-                            <MenuItem eventKey={3.3}>Something else here</MenuItem>
-                            <MenuItem divider />
-                            <MenuItem eventKey={3.3}>Separated link</MenuItem>
+                            <MenuItem eventKey={3.1}>Community Development & Community Service</MenuItem>
+                            <MenuItem eventKey={3.2} href='/kkn'>KKN Tematik</MenuItem>
                         </NavDropdown>
+                        <NavItem eventKey={3} href="https://kemahasiswaan.itb.ac.id/kontak" target="blank_">
+                            Kontak
+                        </NavItem>
                     </Nav>
-                    <Nav pullRight>
-                    <NavItem eventKey={1} href="#">
-                        Link Right
-                    </NavItem>
-                    <NavItem eventKey={2} href="#">
-                        Link Right
-                    </NavItem>
-                    </Nav>
+                    {/* <Nav pullRight>
+                        <NavItem eventKey={1} href="#">
+                            Link Right
+                        </NavItem>
+                        <NavItem eventKey={2} href="#">
+                            Link Right
+                        </NavItem>
+                    </Nav> */}
                 </Navbar.Collapse>
             </Navbar>
         );
