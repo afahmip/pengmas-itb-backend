@@ -1,0 +1,9 @@
+#admin-wrapper {
+    padding-left: 225px;
+}
+
+@media (max-width: 767px) {
+    #admin-wrapper {
+        padding-left: 0;
+    }
+}

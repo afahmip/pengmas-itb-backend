@@ -454,9 +454,6 @@ class Map extends Component {
         $.ajax({
             url: 'http://localhost:5000/api/Lembaga/' + data.lembaga_id,
             type: 'GET',
-            // header: {
-            //     'Authorization': auth
-            // },
             async: false,
             success: function(result){
                 lembagaName = result.name;
