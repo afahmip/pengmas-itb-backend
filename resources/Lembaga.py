@@ -24,7 +24,14 @@ class LembagaResource(Resource):
             return {'message': 'Lembaga already exists'}, 400
         lembaga = Lembaga(
             name = json_data['name'],
-            category = json_data['category']
+            category = json_data['category'],
+            penanggung_jawab = json_data['penanggung_jawab'],
+            nomor_hp = json_data['nomor_hp'],
+            id_line = json_data['id_line'],
+            email = json_data['email'],
+            instagram = json_data['instagram'],
+            web = json_data['web'],
+            youtube = json_data['youtube']
         )
 
         db.session.add(lembaga)
@@ -77,65 +84,3 @@ class LembagaSingleResource(Resource):
         if not lembaga:
             return {'message': 'Lembaga does not exists'}, 400
         return lembaga.json()
-        # lembaga, errors = Lembaga.find_by_id(id)
-        # if errors:
-        #     return errors, 422
-        # if not lembaga:
-        #     return {'message': 'Lembaga does not exists'}, 400
-        # return {'status': 'success', 'data': lembaga}, 200
-    
-    # def post(self):
-    #     json_data = request.get_json(force=True)
-    #     if not json_data:
-    #         return {'message': 'No input data provided'}, 400
-    #     # Validate and deserialize input
-    #     data, errors = lembaga_schema.load(json_data)
-    #     if errors:
-    #         return errors, 422
-    #     lembaga = Lembaga.query.filter_by(name=data['name']).first()
-    #     if lembaga:
-    #         return {'message': 'Lembaga already exists'}, 400
-    #     lembaga = Lembaga(
-    #         name = json_data['name'],
-    #         category = json_data['category']
-    #     )
-
-    #     db.session.add(lembaga)
-    #     db.session.commit()
-
-    #     result = lembaga_schema.dump(lembaga).data
-
-    #     return {'status':'success', 'data':result}, 201
-    
-    # def put(self):
-    #     json_data = request.get_json(force=True)
-    #     if not json_data:
-    #         return {'message': 'No input data provided'}, 400
-    #     # Validate and deserialize input
-    #     data, errors = lembaga_schema.load(json_data)
-    #     if errors:
-    #         return errors, 422
-    #     lembaga = Lembaga.query.filter_by(id=data['id']).first()
-    #     if lembaga:
-    #         return {'message': 'Lembaga does not exists'}, 400
-    #     lembaga.name = data['name']
-    #     db.session.commit()
-
-    #     result = lembaga_schema.dump(lembaga).data
-
-    #     return {'status':'success', 'data':result}, 204
-    
-    # def delete(self):
-    #     json_data = request.get_json(force=True)
-    #     if not json_data:
-    #         return {'message': 'No input data provided'}, 400
-    #     # Validate and deserialize input
-    #     data, errors = lembaga_schema.load(json_data)
-    #     if errors:
-    #         return errors, 422
-    #     lembaga = Lembaga.query.filter_by(id=data['id']).delete()
-    #     db.session.commit()
-
-    #     result = lembaga_schema.dump(lembaga).data
-
-    #     return {'status':'success', 'data':result}, 204

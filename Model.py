@@ -38,13 +38,25 @@ class Activity(db.Model):
     lng = db.Column(db.Float, nullable=False)
     name = db.Column(db.String(300), nullable=True)
     lembaga_id = db.Column(db.Integer, db.ForeignKey('lembagas.id', ondelete='CASCADE'), nullable=False)
-    lembaga = db.relationship('Lembaga', backref=db.backref('activities', lazy='dynamic'))
+    lembaga = db.relationship('Lembaga')
 
     def __init__(self, lat, lng, name, lembaga_id):
         self.lat = lat
         self.lng = lng
         self.name = name
         self.lembaga_id = lembaga_id
+    
+    def json(self):
+        return {
+            'lat': self.lat,
+            'lng': self.lng,
+            'name': self.name,
+            'lembaga_id': self.lembaga_id
+        }
+    
+    @classmethod
+    def find_by_id(cls, id):
+        return cls.query.filter_by(id=id).first()
 
 
 class Lembaga(db.Model):
@@ -52,13 +64,37 @@ class Lembaga(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(250), unique=True, nullable=False)
     category = db.Column(db.String(150), nullable=False)
+    penanggung_jawab = db.Column(db.String(100))
+    nomor_hp = db.Column(db.String(25))
+    id_line = db.Column(db.String(250))
+    email = db.Column(db.String(250))
+    instagram = db.Column(db.String(250))
+    web = db.Column(db.String(250))
+    youtube = db.Column(db.String(250))
 
-    def __init__(self, name, category):
+    def __init__(self, name, category, penanggung_jawab, nomor_hp, id_line, email, instagram, web, youtube):
         self.name = name
         self.category = category
+        self.penanggung_jawab = penanggung_jawab
+        self.nomor_hp = nomor_hp
+        self.id_line = id_line
+        self.email = email
+        self.instagram = instagram
+        self.web = web
+        self.youtube = youtube
     
     def json(self):
-        return {'name': self.name, 'category': self.category}
+        return {
+            'name': self.name, 
+            'category': self.category,
+            'penanggung_jawab': self.penanggung_jawab,
+            'nomor_hp': self.nomor_hp,
+            'id_line': self.id_line,
+            'email': self.email,
+            'instagram': self.instagram,
+            'web': self.web,
+            'youtube': self.youtube
+        }
     
     @classmethod
     def find_by_id(cls, id):
@@ -83,6 +119,13 @@ class LembagaSchema(ma.Schema):
     id = fields.Integer()
     name = fields.String(required=True)
     category = fields.String(required=True)
+    penanggung_jawab = fields.String()
+    nomor_hp = fields.String()
+    id_line = fields.String()
+    email = fields.String()
+    instagram = fields.String()
+    web = fields.String()
+    youtube = fields.String()
 
 
 class ActivitySchema(ma.Schema):

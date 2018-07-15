@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid } from 'react-bootstrap';
+import { Grid, Row, Col } from 'react-bootstrap';
 
 class Kkn extends Component {
     render() {
@@ -15,11 +15,18 @@ class Kkn extends Component {
 
         return (
             <Grid style={containerStyle}>
-                <h2>KKN Tematik</h2>
-                <div style={contentStyle}>
-                    <p>KKN Tematik ITB merupakan kegiatan yang berlandaskan Tri Dharma Perguruan Tinggi. KKN Tematik ITB merupakan suatu proses satu kesatuan yang dihasilkan dari kegiatan pendidikan dan penelitian. Ilmu yang diperoleh melalui pembelajaran dan penelitian di kampus, diimplementasikan untuk menjadi suatu solusi atas permasalahan yang ada di masyarakat. Sehingga nilai kebermanfaatan sebagai kaum intelektual dapat langsung dirasakan oleh masyarakat.</p>
-                    <p>Kegiatan KKN Tematik ITB sebenarnya telah ada sejak tahun 1980-an. Namun kegiatan ini sempat terhenti tanpa sebab yang tidak diketahui. Akhirnya di bawah bimbingan Lembaga Kemahasiswaan ITB pada tahun 2011, kegiatan KKN Tematik ITB kembali dilaksanakan menjadi salah satu mata kuliah unggulan. Melalui konsep yang terus berubah tiap tahunnya serta dengan program yang bermacam-macam ini, diharapkan mahasiswa ITB mampu mengembangkan potensinya dan menjadi problem solver di masyarakat.</p>
-                </div>
+                <h2 className='main-title'>KKN Tematik</h2>
+                <Row>
+                    <Col md={8}>
+                        <div style={contentStyle}>
+                            <p>KKN Tematik ITB merupakan kegiatan yang berlandaskan Tri Dharma Perguruan Tinggi. KKN Tematik ITB merupakan suatu proses satu kesatuan yang dihasilkan dari kegiatan pendidikan dan penelitian. Ilmu yang diperoleh melalui pembelajaran dan penelitian di kampus, diimplementasikan untuk menjadi suatu solusi atas permasalahan yang ada di masyarakat. Sehingga nilai kebermanfaatan sebagai kaum intelektual dapat langsung dirasakan oleh masyarakat.</p>
+                            <p>Kegiatan KKN Tematik ITB sebenarnya telah ada sejak tahun 1980-an. Namun kegiatan ini sempat terhenti tanpa sebab yang tidak diketahui. Akhirnya di bawah bimbingan Lembaga Kemahasiswaan ITB pada tahun 2011, kegiatan KKN Tematik ITB kembali dilaksanakan menjadi salah satu mata kuliah unggulan. Melalui konsep yang terus berubah tiap tahunnya serta dengan program yang bermacam-macam ini, diharapkan mahasiswa ITB mampu mengembangkan potensinya dan menjadi problem solver di masyarakat.</p>
+                        </div>
+                    </Col>
+                    <Col md={4} className='widget-sidebar' style={contentStyle}>
+                        ..
+                    </Col>
+                </Row>
             </Grid>
         );
     }
