@@ -12,11 +12,11 @@ class Navigation extends Component {
 
     render() {
         return (
-            <Navbar inverse fixedTop>
+            <Navbar inverse fixedTop id='admin__navbar'>
                 <Navbar.Header>
                     <Navbar.Toggle />
                     <Navbar.Brand>
-                        <a href="index.html">SB Admin</a>
+                        <a href="index.html">Admin Page</a>
                     </Navbar.Brand>
                 </Navbar.Header>
                 <ul className="nav navbar-right top-nav">

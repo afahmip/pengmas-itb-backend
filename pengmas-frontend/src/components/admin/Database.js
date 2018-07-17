@@ -1,8 +1,8 @@
 /* global $ */
 
 import React, { Component } from 'react';
-import axios from 'axios';
-import { Grid, Row, Col, Panel } from 'react-bootstrap';
+import { Grid, Col, Row, PageHeader, Panel, Tabs, Tab } from 'react-bootstrap';
+import DatabaseForm from './DatabaseForm';
 
 class Database extends Component {
     constructor(props) {
@@ -13,10 +13,6 @@ class Database extends Component {
 
     componentDidMount() {
         this.getData();
-    }
-
-    getLembagaData = () => {
-        
     }
 
     getData = () => {
@@ -34,7 +30,7 @@ class Database extends Component {
     }
 
     createTable = data => {
-        let placeholder = document.getElementById('database-table');
+        let placeholder = document.getElementById('admin-database__table');
         let table = document.createElement('table');
         let headers = ['lembaga_id', 'name'];
         let headerName = {
@@ -80,20 +76,33 @@ class Database extends Component {
     }
 
     render() {
-        let tableDivStyle = {
-            margin  : '40px 0 50px 0'
-        }
-
         return (
-            <Grid>
-                <h2 className='main-title'>Database Kegiatan</h2>
-                <div>
-                    <p>Berikut ini adalah daftar kegiatan pengabdian masyarakat yang pernah diselenggarakan oleh lembaga-lembaga mahasiswa di ITB. </p>
-                </div>
-                <div id='database-table' style={tableDivStyle}></div>
-            </Grid>
+            <Row>
+                <Col lg={12}>
+                    <PageHeader>
+                        Database Kegiatan
+                    </PageHeader>
+                </Col>
+                <Col lg={12}>
+                    <Tabs defaultActiveKey={2}>
+                        <Tab eventKey={1} title='Daftar Kegiatan'>
+                            <Panel>
+                                <Panel.Body>
+                                    <div id='admin-database__table'/>
+                                </Panel.Body>
+                            </Panel>
+                        </Tab>
+                        <Tab eventKey={2} title='Tambah Kegiatan'>
+                            <Panel>
+                                <Panel.Body>
+                                    <DatabaseForm/>
+                                </Panel.Body>
+                            </Panel>
+                        </Tab>
+                    </Tabs>
+                </Col>
+            </Row>
         );
     }
 }
-
 export default Database;

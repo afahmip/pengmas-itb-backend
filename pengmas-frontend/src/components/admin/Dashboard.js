@@ -1,24 +1,16 @@
 import React, { Component } from 'react';
+import { Grid, Col, Row, PageHeader } from 'react-bootstrap';
 
 class Dashboard extends Component {
     render() {
         return (
-            <div className="row">
-                <div className="col-lg-12">
-                    <h1 className="page-header">
-                        Blank Page
-                        <small>Subheading</small>
-                    </h1>
-                    <ol className="breadcrumb">
-                        <li>
-                            <i className="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
-                        </li>
-                        <li className="active">
-                            <i className="fa fa-file"></i> Blank Page
-                        </li>
-                    </ol>
-                </div>
-            </div>
+            <Row>
+                <Col lg={12}>
+                    <PageHeader>
+                        Dashboard <small>Subheading</small>
+                    </PageHeader>
+                </Col>
+            </Row>
         );
     }
 }
