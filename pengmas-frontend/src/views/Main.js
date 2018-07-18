@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Navigation from './../components/partials/Navigation';
 import Kkn from './Kkn';
 import Database from './Database';

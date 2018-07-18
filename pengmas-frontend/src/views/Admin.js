@@ -5,6 +5,7 @@ import './css/admin.css';
 import Navigation from '../components/admin/Navigation';
 import Dashboard from '../components/admin/Dashboard';
 import Database from '../components/admin/Database';
+import Lembaga from '../components/admin/Lembaga';
 
 class Admin extends Component {
     constructor(props) {
@@ -20,6 +21,7 @@ class Admin extends Component {
                     <Grid fluid>
                         <Switch>
                             <Route exact path={this.path + '/database'} component={Database}/>
+                            <Route exact path={this.path + '/lembaga'} component={Lembaga}/>
                             <Route path={this.path} component={Dashboard}/>
                         </Switch>
                     </Grid>

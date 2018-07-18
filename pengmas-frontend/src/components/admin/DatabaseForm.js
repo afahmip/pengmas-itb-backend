@@ -9,6 +9,7 @@ class DatabaseForm extends Component {
         super(props);
 
         this.initMap = this.initMap.bind(this);
+        this.initLembagaOption = this.initLembagaOption.bind(this);
         this.state = {
             name    : '',
             lembaga : '',
@@ -20,6 +21,31 @@ class DatabaseForm extends Component {
 
     componentDidMount() {
         this.initMap();
+        this.initLembagaOption();
+    }
+
+    initLembagaOption = () => {
+        let placeholder = document.querySelector('#database__form-select');
+
+        $.ajax({
+            type        : 'GET',
+            url         : 'http://localhost:5000/api/Lembaga',
+            success     : function(result) {
+                createOption(result.data);
+            },
+            error       : function(result) {
+                console.log(result);
+            }
+        });
+
+        function createOption(data) {
+            data.forEach(e => {
+                let option = document.createElement('option');
+                option.value = e.id;
+                option.innerHTML = e.name;
+                placeholder.appendChild(option);
+            });
+        }
     }
 
     initMap = () => {
@@ -384,14 +410,14 @@ class DatabaseForm extends Component {
     postNewActivity = () => {
         this.setState({
             name    : $('input[name=name]').val(),
-            lembaga : $('#database__form-select :selected').text()
+            lembaga : $('#database__form-select :selected').val()
         });
 
         let data = {
             "lat"       : this.state.lat,
             "lng"       : this.state.lng,
             "name"      : $('input[name=name]').val(),
-            "lembaga_id": $('#database__form-select :selected').text()
+            "lembaga_id": $('#database__form-select :selected').val()
         }
 
         $.ajax({
@@ -438,10 +464,7 @@ class DatabaseForm extends Component {
                 </FormGroup>
                 <FormGroup>
                     <ControlLabel>Nama Lembaga</ControlLabel>
-                    <FormControl componentClass='select' id='database__form-select'>
-                        <option value='1'>1</option>
-                        <option value='2'>Other</option>
-                    </FormControl>
+                    <FormControl componentClass='select' id='database__form-select'></FormControl>
                 </FormGroup>
                 <FormGroup>
                     <ControlLabel>Lokasi Kegiatan</ControlLabel>

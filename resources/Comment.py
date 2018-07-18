@@ -25,7 +25,7 @@ class CommentResource(Resource):
         comment = Comment(
             category_id=data['category_id'], 
             comment=data['comment']
-            )
+        )
         db.session.add(comment)
         db.session.commit()
 

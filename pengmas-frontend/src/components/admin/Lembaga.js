@@ -2,9 +2,9 @@
 
 import React, { Component } from 'react';
 import { Grid, Col, Row, PageHeader, Panel, Tabs, Tab } from 'react-bootstrap';
-import DatabaseForm from './DatabaseForm';
+import LembagaForm from './LembagaForm';
 
-class Database extends Component {
+class Lembaga extends Component {
     constructor(props) {
         super(props);
 
@@ -20,7 +20,6 @@ class Database extends Component {
             type        : 'GET',
             url         : 'http://localhost:5000/api/Activity',
             success     : (result) => {
-                console.log(result.data);
                 this.createTable(result.data);
             },
             error       : function(result) {
@@ -61,7 +60,7 @@ class Database extends Component {
         for(var i=0; i<data.length; i++) {
             tr = document.createElement('tr');
             let td = document.createElement('td');
-            append(tr, td, data[i]['lembaga_name']);
+            append(tr, td, data[i]['lembaga_id']);
             td = document.createElement('td');
             append(tr, td, data[i]['name']);
             tbody.appendChild(tr);
@@ -80,22 +79,22 @@ class Database extends Component {
             <Row>
                 <Col lg={12}>
                     <PageHeader>
-                        Database Kegiatan
+                        Database Lembaga
                     </PageHeader>
                 </Col>
                 <Col lg={12}>
-                    <Tabs defaultActiveKey={1}>
-                        <Tab eventKey={1} title='Daftar Kegiatan'>
+                    <Tabs defaultActiveKey={2}>
+                        <Tab eventKey={1} title='Daftar Lembaga'>
                             <Panel>
                                 <Panel.Body>
                                     <div id='admin-database__table'/>
                                 </Panel.Body>
                             </Panel>
                         </Tab>
-                        <Tab eventKey={2} title='Tambah Kegiatan'>
+                        <Tab eventKey={2} title='Tambah Lembaga'>
                             <Panel>
                                 <Panel.Body>
-                                    <DatabaseForm/>
+                                    <LembagaForm/>
                                 </Panel.Body>
                             </Panel>
                         </Tab>
@@ -105,4 +104,4 @@ class Database extends Component {
         );
     }
 }
-export default Database;
+export default Lembaga;

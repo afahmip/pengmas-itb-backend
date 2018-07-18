@@ -34,6 +34,30 @@ class ActivityResource(Resource):
         result = activity_schema.dump(activity).data
 
         return {'status': 'success', 'data': result}, 201
+    
+    def put(self):
+        json_data = request.get_json(force=True)
+        if not json_data:
+            return {'message': 'No input data provided'}, 400
+        # Validate and deserialize input
+        data, errors = activity_schema.load(json_data)
+        if errors:
+            return errors, 422
+        # Check if activity exist
+        activity = Activity.query.filter_by(id=data['id']).first()
+        if not activity:
+            return {'message': 'Activity does not exist'}, 400
+        # Update activity
+        activity.name = data['name']
+        activity.lat = data['lat']
+        activity.lng = data['lng']
+        activity.lembaga_id = data['lembaga_id']
+        activity.lembaga_name = Lembaga.find_by_id(data['lembaga_id']).get_name()
+        db.session.commit()
+
+        result = activity_schema.dump(activity).data
+
+        return {'status': 'success', 'data': result}, 204
 
 class ActivitySingleResource(Resource):
     def get(self, id):

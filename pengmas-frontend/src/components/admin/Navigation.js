@@ -38,7 +38,7 @@ class Navigation extends Component {
                             <a href={this.props.path + '/database'}><i className="fa fa-fw fa-chart-bar"></i> Data Kegiatan</a>
                         </li>
                         <li>
-                            <a href="tables.html"><i className="fa fa-fw fa-table"></i> Tables</a>
+                            <a href={this.props.path + '/lembaga'}><i className="fa fa-fw fa-table"></i> Daftar Lembaga</a>
                         </li>
                         <li>
                             <a href="forms.html"><i className="fa fa-fw fa-edit"></i> Forms</a>
