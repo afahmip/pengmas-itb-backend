@@ -1,6 +1,8 @@
 from flask import request
 from flask_restful import Resource
-from Model import db, Lembaga, LembagaSchema
+from models import db
+from models.Lembaga import Lembaga, LembagaSchema
+
 
 lembagas_schema = LembagaSchema(many=True)
 lembaga_schema = LembagaSchema()

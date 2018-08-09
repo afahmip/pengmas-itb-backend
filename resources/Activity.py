@@ -1,6 +1,9 @@
 from flask import request
 from flask_restful import Resource
-from Model import db, Activity, Lembaga, ActivitySchema
+from models import db
+from models.Activity import Activity, ActivitySchema
+from models.Lembaga import Lembaga, LembagaSchema
+
 
 activities_schema = ActivitySchema(many=True)
 activity_schema = ActivitySchema()
