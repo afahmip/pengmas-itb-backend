@@ -1,11 +1,12 @@
 alembic==0.9.10
 aniso8601==3.0.2
-apturl==0.5.2
 astroid==1.6.5
+bcrypt==3.1.4
 beautifulsoup4==4.4.1
 blinker==1.3
 Brlapi==0.6.4
 certifi==2018.4.16
+cffi==1.11.5
 chardet==3.0.4
 checkbox-support==0.22
 chrome-gnome-shell==0.0.0
@@ -21,7 +22,9 @@ djangorestframework==3.8.2
 Faker==0.8.13
 feedparser==5.1.3
 Flask==1.0.2
+Flask-Bcrypt==0.7.1
 Flask-Cors==3.0.6
+flask-heroku==0.1.9
 flask-marshmallow==0.9.0
 Flask-Migrate==2.2.1
 Flask-RESTful==0.3.6
@@ -57,6 +60,7 @@ plainbox==0.25
 psycopg2==2.7.5
 ptyprocess==0.5
 pyasn1==0.1.9
+pycparser==2.18
 pycups==1.9.73
 pycurl==7.43.0
 pygobject==3.20.0
