@@ -1,3 +1,5 @@
+import os
+
 from flask import Blueprint, Flask
 from flask_restful import Api
 from flask_cors import CORS
@@ -29,3 +31,8 @@ def create_app(env_name):
     app.register_blueprint(api_bp, url_prefix='/api')
 
     return app
+
+if __name__ == "__main__":
+    env_name = os.getenv('FLASK_ENV')
+    app = create_app(env_name)
+    app.run(debug=True)
