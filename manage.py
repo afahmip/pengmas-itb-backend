@@ -2,8 +2,8 @@ import os
 
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
-from app import create_app, db
-from config import app_config
+from src.app import create_app, db
+from src.config import app_config
 
 
 env_name = os.getenv('FLASK_ENV')

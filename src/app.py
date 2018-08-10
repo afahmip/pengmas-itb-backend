@@ -3,12 +3,13 @@ import os
 from flask import Blueprint, Flask
 from flask_restful import Api
 from flask_cors import CORS
-from resources.Category import CategoryResource
-from resources.Lembaga import LembagaResource, LembagaSingleResource
-from resources.Activity import ActivityResource, ActivitySingleResource
-from models import db
-from config import app_config
+from src.resources.Category import CategoryResource
+from src.resources.Lembaga import LembagaResource, LembagaSingleResource
+from src.resources.Activity import ActivityResource, ActivitySingleResource
+from src.models import db
+from src.config import app_config
 
+# Initialize blueprint
 api_bp = Blueprint('api', __name__)
 api = Api(api_bp)
 
@@ -31,8 +32,3 @@ def create_app(env_name):
     app.register_blueprint(api_bp, url_prefix='/api')
 
     return app
-
-if __name__ == "__main__":
-    env_name = os.getenv('FLASK_ENV')
-    app = create_app(env_name)
-    app.run(debug=True)

@@ -1,7 +1,7 @@
 from flask import request
 from flask_restful import Resource
-from models import db
-from models.Category import Category, CategorySchema
+from src.models import db
+from src.models.Category import Category, CategorySchema
 
 
 categories_schema = CategorySchema(many=True)
