@@ -60,21 +60,6 @@ class LembagaResource(Resource):
         result = lembaga_schema.dump(lembaga).data
 
         return {'status':'success', 'data':result}, 204
-    
-    def delete(self):
-        json_data = request.get_json(force=True)
-        if not json_data:
-            return {'message': 'No input data provided'}, 400
-        # Validate and deserialize input
-        data, errors = lembaga_schema.load(json_data)
-        if errors:
-            return errors, 422
-        lembaga = Lembaga.query.filter_by(id=data['id']).delete()
-        db.session.commit()
-
-        result = lembaga_schema.dump(lembaga).data
-
-        return {'status':'success', 'data':result}, 204
 
 
 class LembagaSingleResource(Resource):
@@ -86,3 +71,16 @@ class LembagaSingleResource(Resource):
         if not lembaga:
             return {'message': 'Lembaga does not exists'}, 400
         return lembaga.json()
+    
+    def delete(self, id):
+        try:
+            lembaga = Lembaga.find_by_id(id)
+        except:
+            return {'error': 'An error occured'}, 500
+        if not lembaga:
+            return {'message': 'Lembaga does not exists'}, 400
+
+        lembaga = Lembaga.query.filter_by(id=id).delete()
+        db.session.commit()
+
+        return {'status': 'success', 'message': 'Item deleted'}, 204

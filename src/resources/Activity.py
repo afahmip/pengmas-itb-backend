@@ -28,7 +28,12 @@ class ActivityResource(Resource):
             lat = json_data['lat'],
             lng = json_data['lng'],
             name = json_data['name'],
-            lembaga_id = json_data['lembaga_id']
+            lembaga_id = json_data['lembaga_id'],
+            category_id = json_data['category_id'],
+            description = json_data['description'],
+            goal = json_data['goal'],
+            target = json_data['target'],
+            time = json_data['time']
         )
 
         db.session.add(activity)
@@ -56,11 +61,17 @@ class ActivityResource(Resource):
         activity.lng = data['lng']
         activity.lembaga_id = data['lembaga_id']
         activity.lembaga_name = Lembaga.find_by_id(data['lembaga_id']).get_name()
+        activity.category_id = data['category_id']
+        activity.description = data['description']
+        activity.goal = data['goal']
+        activity.target = data['target']
+        activity.time = data['time']
         db.session.commit()
 
         result = activity_schema.dump(activity).data
 
         return {'status': 'success', 'data': result}, 204
+
 
 class ActivitySingleResource(Resource):
     def get(self, id):
@@ -71,3 +82,16 @@ class ActivitySingleResource(Resource):
         if not activity:
             return {'message': 'Activity does not exists'}, 400
         return activity.json()
+    
+    def delete(self, id):
+        try:
+            activity = Activity.find_by_id(id)
+        except:
+            return {'error': 'An error occured'}, 500
+        if not activity:
+            return {'message': 'Activity does not exists'}, 400
+
+        activity = Activity.query.filter_by(id=id).delete()
+        db.session.commit()
+
+        return {'status': 'success', 'message': 'Item deleted'}, 204

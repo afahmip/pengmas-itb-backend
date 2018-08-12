@@ -15,6 +15,14 @@ class Category(db.Model):
     def __init__(self, name):
         self.name = name
     
+    def get_name(self):
+        return self.name
+    
+    def json(self):
+        return {
+            'name': self.name
+        }
+    
     @classmethod
     def find_by_id(cls, id):
         return cls.query.filter_by(id=id).first()
