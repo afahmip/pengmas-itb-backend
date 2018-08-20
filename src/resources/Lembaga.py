@@ -55,6 +55,14 @@ class LembagaResource(Resource):
         if not lembaga:
             return {'message': 'Lembaga does not exists'}, 400
         lembaga.name = data['name']
+        lembaga.category = data['category']
+        lembaga.penanggung_jawab = data['penanggung_jawab']
+        lembaga.nomor_hp = data['nomor_hp']
+        lembaga.id_line = data['id_line']
+        lembaga.email = data['email']
+        lembaga.instagram = data['instagram']
+        lembaga.web = data['web']
+        lembaga.youtube = data['youtube']
         db.session.commit()
 
         result = lembaga_schema.dump(lembaga).data
